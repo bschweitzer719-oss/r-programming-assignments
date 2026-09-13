@@ -27,3 +27,12 @@ myMean <- function(assignment2) {
 myMean(assignment2)
 ## [1] 19.25
 # However, after using the corrected version of the myMean function, the code ran successfully and returned the correct result: 19.25
+
+https://discoverantilleancuisine.wordpress.com/2026/09/13/assignment-3-analyzing-2016-data-poll-data-in-r
+## Assignment #3 – Analyzing 2016 Poll Data in R
+
+This repository contains:
+- My R script for Assignment #3
+- Summary statistics
+- Poll discrepancy visualization
+- Link to my blog reflection
