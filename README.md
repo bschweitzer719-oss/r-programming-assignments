@@ -36,3 +36,26 @@ This repository contains:
 - Summary statistics
 - Poll discrepancy visualization
 - Link to my blog reflection
+
+- # Assignment #4 – Visualizing and Interpreting Hospital Patient Data
+
+This repository contains my work for Assignment #4, including:
+- Data cleaning and handling missing values in R
+- Boxplots and histograms for patient vitals
+- Interpretation of relationships between vitals and physician assessments
+
+## Blog Post
+https://discoverantilleancuisine.wordpress.com/2026/09/21/assignment-4-visualizing-and-interpreting-hospital-patient-data
+
+## R Script
+(Upload your .R file and link it here)
+
+## Plots
+(Upload your PNG images and link them here)
+
+## Interpretation Summary
+- Blood pressure varies across assessments.
+- Visit frequency shows a strong peak at 2 visits with one exaggerated spike.
+- Clinical implication: high‑risk patients may need more frequent visits.
+- NA values did not significantly affect the analysis.
+
