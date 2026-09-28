@@ -58,4 +58,19 @@ https://discoverantilleancuisine.wordpress.com/2026/09/21/assignment-4-visualizi
 - Visit frequency shows a strong peak at 2 visits with one exaggerated spike.
 - Clinical implication: high‑risk patients may need more frequent visits.
 - NA values did not significantly affect the analysis.
+## Assignment #5: Matrix Algebra in R
+### Objective
+The objective of this assignment is to practice creating and inspecting matrices in R, compute matrix inverses and determinants using `solve()` and `det()`, and handle non‑square matrices and related errors appropriately. This work highlights computational issues such as numeric stability and matrix singularity.
+
+### R Code
+Script: assignment5_matrix_algebra.R
+
+### Summary of Results
+- Matrix A is 10×10 but singular (det = 0), so `solve(A)` fails.
+- Matrix B is 10×100 (non-square), so both `solve(B)` and `det(B)` produce errors.
+- Errors were handled using `tryCatch()`.
+### Assignment 5 link:
+https://1drv.ms/w/c/519baaea610e4177/IQBudVvk0VQLRZVTJ4alpr7SATD5jz2v9A6cjigNZb8TcMM?e=gePHFw
+### Blog Post
+https://discoverantilleancuisine.wordpress.com/2026/09/27/assignment-5-matrix-algebra-in-r/
 
