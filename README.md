@@ -47,11 +47,6 @@ This repository contains my work for Assignment #4, including:
 ## Blog Post
 https://discoverantilleancuisine.wordpress.com/2026/09/21/assignment-4-visualizing-and-interpreting-hospital-patient-data
 
-## R Script
-(Upload your .R file and link it here)
-
-## Plots
-(Upload your PNG images and link them here)
 
 ## Interpretation Summary
 - Blood pressure varies across assessments.
@@ -74,3 +69,76 @@ https://1drv.ms/w/c/519baaea610e4177/IQBudVvk0VQLRZVTJ4alpr7SATD5jz2v9A6cjigNZb8
 ### Blog Post
 https://discoverantilleancuisine.wordpress.com/2026/09/27/assignment-5-matrix-algebra-in-r/
 
+### Assignment #6: Matrix Operations and Construction
+https://discoverantilleancuisine.wordpress.com/2026/09/30/assignment-6-matrix-operations-and-construction/
+
+Matrix Operations and Construction
+Badinter Schweitzer
+2026-09-30
+
+This assignment aims to practice fundamental matrix operations in R, specifically addition and subtraction, and to learn how to construct diagonal matrices using diag(). Simultaneously, it requires creating a custom block‑structured matrix programmatically.
+
+Task 1 - Matrix Addition & Subtraction
+A <- matrix(c(2, 0, 1, 3), ncol = 2)
+B <- matrix(c(5, 2, 4, -1), ncol = 2)
+
+# Print A and B
+print(A)
+##      [,1] [,2]
+## [1,]    2    1
+## [2,]    0    3
+print(B)
+##      [,1] [,2]
+## [1,]    5    4
+## [2,]    2   -1
+When I create matrices A and B, R doesn’t display them automatically. Typing A and B prints the full matrix. R shows the matrices when I type the object name, displaying their contents before any calculations. 
+# Compute A and B
+A + B
+##      [,1] [,2]
+## [1,]    7    5
+## [2,]    2    2
+A - B
+##      [,1] [,2]
+## [1,]   -3   -3
+## [2,]   -2    4
+
+Task 2 - Create a Diagonal Matrix
+D <- diag(c(4, 1, 2, 3))
+D
+##      [,1] [,2] [,3] [,4]
+## [1,]    4    0    0    0
+## [2,]    0    1    0    0
+## [3,]    0    0    2    0
+## [4,]    0    0    0    3
+Task 3 - Construct a custom 5 by 5 matrix
+M <- matrix(1:25, nrow = 5, ncol = 5)
+M
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    6   11   16   21
+## [2,]    2    7   12   17   22
+## [3,]    3    8   13   18   23
+## [4,]    4    9   14   19   24
+## [5,]    5   10   15   20   25
+# Find combination of the matrices A and B
+cbind(A, B)
+##      [,1] [,2] [,3] [,4]
+## [1,]    2    1    5    4
+## [2,]    0    3    2   -1
+# Combine cbind() with diag()
+combn <- cbind(D, c(5, 10, 15, 20))
+combn
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    4    0    0    0    5
+## [2,]    0    1    0    0   10
+## [3,]    0    0    2    0   15
+## [4,]    0    0    0    3   20
+# Combine cbind with matrices
+combn <- cbind(M, c(5,10,15,20,25))
+combn
+##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    1    6   11   16   21    5
+## [2,]    2    7   12   17   22   10
+## [3,]    3    8   13   18   23   15
+## [4,]    4    9   14   19   24   20
+## [5,]    5   10   15   20   25   25
+Each function in this assignment executes a distinct operation. For instance, adding matrices A and B with the + operator increments each corresponding element while maintaining the original 2‑row, 2‑column matrix structure. Likewise, subtraction (-) decrements each element in the same arrangement, and functions such as diag() and cbind() generate or merge matrices to construct more intricate structures.
