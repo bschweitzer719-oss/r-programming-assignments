@@ -75,7 +75,9 @@ https://discoverantilleancuisine.wordpress.com/2026/09/30/assignment-6-matrix-op
 Matrix Operations and Construction
 Badinter Schweitzer
 2026-09-30
+## Assignment link: https://1drv.ms/w/c/519baaea610e4177/IQDFFvHrFR4NR5QxP-r_NriJAZtnc6rx3cbhFmluRISKp2s?e=FpdodU
 
+## Objective:
 This assignment aims to practice fundamental matrix operations in R, specifically addition and subtraction, and to learn how to construct diagonal matrices using diag(). Simultaneously, it requires creating a custom block‑structured matrix programmatically.
 
 Task 1 - Matrix Addition & Subtraction
