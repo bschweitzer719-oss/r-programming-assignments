@@ -247,3 +247,126 @@ Discussion Questions
 ⦁	Using typeof() one can determine an object's underlying type. For instance, typeof(5L) yields "integer" and typeof(list(...)) yields "list". The class() function displays the object's class, whereas typeof() indicates the underlying storage type.
 ⦁	Matloff defines a generic function in R as a function that operates polymorphically, for example plot() and print(), which are considered generic functions. When a generic function is invoked, R dispatches the call to the appropriate class method, thereby redirecting it to the function defined for the object's class.
 ⦁	The main distinctions between S3 and S4 pertain to method definition and formal class declarations: S3 employs informal class definitions, making creation and usage straightforward, whereas S4 utilizes formal class declarations via setClass(), defined slots, and stricter type checking. S3 prioritizes convenience, while S4 prioritizes safety and reliability.
+
+Assignment #8: Input/Output, String Manipulation, and the plyr Package
+https://discoverantilleancuisine.wordpress.com/2026/10/18/assignment-8-input-output-string-manipulation-and-the-plyr-package/
+The objective of this assignment is to read and write data files in R, group and summarize data by a factor using plyr, filter character data with regular expressions, and export results to text and CSV files.
+# In R, read it into a data frame:
+# choose file interactively
+  student6 <- read.table("student6.txt", header = TRUE, stringsAsFactors = FALSE)
+  student6 
+##        Name.Age.Sex.Grade
+## 1         Raul,25,Male,80
+## 2       Booker,18,Male,83
+## 3      Lauri,21,Female,90
+## 4     Leonie,21,Female,91
+## 5    Sherlyn,22,Female,85
+## 6    Mikaela,20,Female,69
+## 7      Raphael,23,Male,91
+## 8       Aiko,24,Female,97
+## 9   Tiffaney,21,Female,78
+## 10    Corina,23,Female,81
+## 11 Petronila,23,Female,98
+## 12    Alecia,20,Female,87
+## 13   Shemika,23,Female,97
+## 14    Fallon,22,Female,90
+## 15   Deloris,21,Female,67
+## 16    Randee,23,Female,91
+## 17     Eboni,20,Female,84
+## 18   Delfina,19,Female,93
+## 19 Ernestina,19,Female,93
+## 20        Milo,19,Male,67
+# Check columns
+  student6 <- read.table("student6.txt", header = TRUE, sep = ",")
+  student6
+##         Name Age    Sex Grade
+## 1       Raul  25   Male    80
+## 2     Booker  18   Male    83
+## 3      Lauri  21 Female    90
+## 4     Leonie  21 Female    91
+## 5    Sherlyn  22 Female    85
+## 6    Mikaela  20 Female    69
+## 7    Raphael  23   Male    91
+## 8       Aiko  24 Female    97
+## 9   Tiffaney  21 Female    78
+## 10    Corina  23 Female    81
+## 11 Petronila  23 Female    98
+## 12    Alecia  20 Female    87
+## 13   Shemika  23 Female    97
+## 14    Fallon  22 Female    90
+## 15   Deloris  21 Female    67
+## 16    Randee  23 Female    91
+## 17     Eboni  20 Female    84
+## 18   Delfina  19 Female    93
+## 19 Ernestina  19 Female    93
+## 20      Milo  19   Male    67
+# Load plyr and compute the mean of Grade by Sex:
+    library(plyr)
+  
+  gender_mean <- ddply(
+    student6,
+   " Sex",
+    summarise,
+    GradeAverage = mean(Grade, na.rm = TRUE)
+  )
+  
+  gender_mean
+##      Sex GradeAverage
+## 1 Female      86.9375
+## 2   Male      80.2500
+# Write the grouped means to a text file:
+    write.table(
+      gender_mean,
+      file = "gender_mean.txt",
+      sep  = "\t",
+      row.names = FALSE
+    )
+  
+
+# Convert the data (if not already) to a data frame (see above).
+# Select rows where Name contains “i” or “I”:
+  i_students <- subset(
+    student6,
+    grepl("i", Name, ignore.case = TRUE)
+  )
+  i_students
+##         Name Age    Sex Grade
+## 3      Lauri  21 Female    90
+## 4     Leonie  21 Female    91
+## 6    Mikaela  20 Female    69
+## 8       Aiko  24 Female    97
+## 9   Tiffaney  21 Female    78
+## 10    Corina  23 Female    81
+## 11 Petronila  23 Female    98
+## 12    Alecia  20 Female    87
+## 13   Shemika  23 Female    97
+## 15   Deloris  21 Female    67
+## 17     Eboni  20 Female    84
+## 18   Delfina  19 Female    93
+## 19 Ernestina  19 Female    93
+## 20      Milo  19   Male    67
+# Extract just the names and write them to a CSV:
+  write.csv(
+    i_students$Name,
+    file      = "i_students.csv",
+    row.names = FALSE,
+    quote     = FALSE
+  )
+  
+# Save the full filtered data frame to a CSV:
+    write.csv(
+      i_students,
+      file      = "i_students_full.csv",
+      row.names = FALSE
+    )
+    
+# Confirm the files gender_mean.txt, i_students.csv, and i_students_full.csv exist in your working directory.
+    file.exists("gender_mean.txt")
+## [1] TRUE
+    file.exists("i_students.csv")
+## [1] TRUE
+    file.exists("i_students_full.csv") 
+## [1] TRUE
+# Because the result returned TRUE, the file.exists() function was used to verify that gender_mean.txt, i_students.csv,
+# and i_students_full.csv were successfully created in the working directory.
+In this assignment, I imported a data file into R using the read.table() function. Other available options include scan(), read.csv(), and importing data from a web URL. For this assignment, I used read.table() to load the dataset. I then selected rows where the names contained the letter "i" using a string manipulation function. I extracted the names and exported them to a CSV file. Furthermore, I used file.exists() to confirm that the files were successfully created and saved in the working directory.
