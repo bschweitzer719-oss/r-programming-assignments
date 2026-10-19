@@ -249,6 +249,7 @@ Discussion Questions
 ⦁	The main distinctions between S3 and S4 pertain to method definition and formal class declarations: S3 employs informal class definitions, making creation and usage straightforward, whereas S4 utilizes formal class declarations via setClass(), defined slots, and stricter type checking. S3 prioritizes convenience, while S4 prioritizes safety and reliability.
 
 Assignment #8: Input/Output, String Manipulation, and the plyr Package
+file:///C:/Users/User/OneDrive/Desktop/INTRO%20TO%20R%20PROG/student6.html
 https://discoverantilleancuisine.wordpress.com/2026/10/18/assignment-8-input-output-string-manipulation-and-the-plyr-package/
 The objective of this assignment is to read and write data files in R, group and summarize data by a factor using plyr, filter character data with regular expressions, and export results to text and CSV files.
 # In R, read it into a data frame:
