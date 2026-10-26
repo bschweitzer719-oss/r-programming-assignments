@@ -371,3 +371,100 @@ The objective of this assignment is to read and write data files in R, group and
 # Because the result returned TRUE, the file.exists() function was used to verify that gender_mean.txt, i_students.csv,
 # and i_students_full.csv were successfully created in the working directory.
 In this assignment, I imported a data file into R using the read.table() function. Other available options include scan(), read.csv(), and importing data from a web URL. For this assignment, I used read.table() to load the dataset. I then selected rows where the names contained the letter "i" using a string manipulation function. I extracted the names and exported them to a CSV file. Furthermore, I used file.exists() to confirm that the files were successfully created and saved in the working directory.
+
+Assignment #9: Visualization in R – Base Graphics, Lattice, and ggplot2
+https://discoverantilleancuisine.wordpress.com/2026/10/25/assignment-9-visualization-in-r-base-graphics-lattice-and-ggplot2/
+file:///C:/Users/User/OneDrive/Desktop/INTRO%20TO%20R%20PROG/assignment9.html
+Visualization in R – Base Graphics, Lattice, and ggplot2
+Badinter Schweitzer
+2026-10-26
+The objective of this assignment is to compare the three visualization systems in R, base graphics, lattice, and ggplot2, by applying each to the same immigration dataset and identifying their similarities and differences. The analysis will demonstrate clear, reproducible code and communicate insights in a concise and confident manner.
+Dataset
+Fatalities <- read.csv("Fatalities.csv")
+head(Fatalities)
+##   rownames state year spirits unemp   income   emppop  beertax baptist  mormon
+## 1        1    al 1982    1.37  14.4 10544.15 50.69204 1.539379 30.3557 0.32829
+## 2        2    al 1983    1.36  13.7 10732.80 52.14703 1.788991 30.3336 0.34341
+## 3        3    al 1984    1.32  11.1 11108.79 54.16809 1.714286 30.3115 0.35924
+## 4        4    al 1985    1.28   8.9 11332.63 55.27114 1.652542 30.2895 0.37579
+## 5        5    al 1986    1.23   9.8 11661.51 56.51450 1.609907 30.2674 0.39311
+## 6        6    al 1987    1.18   7.8 11944.00 57.50988 1.560000 30.2453 0.41123
+##   drinkage     dry youngdrivers    miles breath jail service fatal nfatal
+## 1    19.00 25.0063     0.211572 7233.887     no   no      no   839    146
+## 2    19.00 22.9942     0.210768 7836.348     no   no      no   930    154
+## 3    19.00 24.0426     0.211484 8262.990     no   no      no   932    165
+## 4    19.67 23.6339     0.211140 8726.917     no   no      no   882    146
+## 5    21.00 23.4647     0.213400 8952.854     no   no      no  1081    172
+## 6    21.00 23.7924     0.215527 9166.302     no   no      no  1110    181
+##   sfatal fatal1517 nfatal1517 fatal1820 nfatal1820 fatal2124 nfatal2124  afatal
+## 1     99        53          9        99         34       120         32 309.438
+## 2     98        71          8       108         26       124         35 341.834
+## 3     94        49          7       103         25       118         34 304.872
+## 4     98        66          9       100         23       114         45 276.742
+## 5    119        82         10       120         23       119         29 360.716
+## 6    114        94         11       127         31       138         30 368.421
+##       pop  pop1517  pop1820  pop2124 milestot unempus emppopus         gsp
+## 1 3942002 208999.6 221553.4 290000.1    28516     9.7     57.8 -0.02212476
+## 2 3960008 202000.1 219125.5 290000.2    31032     9.6     57.9  0.04655825
+## 3 3988992 197000.0 216724.1 288000.2    32961     7.5     59.5  0.06279784
+## 4 4021008 194999.7 214349.0 284000.3    35091     7.2     60.1  0.02748997
+## 5 4049994 203999.9 212000.0 263000.3    36259     7.0     60.7  0.03214295
+## 6 4082999 204999.8 208998.5 258999.8    37426     6.2     61.5  0.04897637
+Base R Graphics Create at least two plots using base R functions. Examples:
+
+# Scatter plot
+plot(Fatalities$year, Fatalities$fatal,
+     main   = "Year vs. Fatalities", col = "orange",
+     xlab   = "Year",
+     ylab   = "Fatalities")
+<img width="701" height="459" alt="image" src="https://github.com/user-attachments/assets/fcd5a777-0bf8-4f88-8d5e-5865e913cbc4" />
+# Histogram
+hist(Fatalities$fatal,
+     main   = "Distribution of Fatalities",
+     xlab   = "Fatalities",
+      col = "cyan",
+      border = "red")
+<img width="739" height="458" alt="image" src="https://github.com/user-attachments/assets/5c3f4ce2-a075-407f-918f-8422df42f228" />
+Lattice Graphics Use the lattice package to produce conditioned or multivariate plots. Examples:
+library(lattice)
+# Conditional scatter plot (small multiples)
+xyplot(fatal ~ year,
+       data = Fatalities,
+       main = "Lattice: Year vs.Fatalities",col = "purple",
+       xlab = "Year",
+       ylab = "Fatalities")
+<img width="705" height="467" alt="image" src="https://github.com/user-attachments/assets/28d7b9b8-e29f-4ccb-b101-395d48c4fc06" />
+# Box-and-whisker plot
+bwplot(fatal ~ factor(year),
+       data = Fatalities,
+       main = "Lattice: fatal by year")
+<img width="685" height="457" alt="image" src="https://github.com/user-attachments/assets/3f3d176a-23cb-40dd-a81a-c128377645c1" />
+Use ggplot2’s grammar of graphics to create layered visuals.
+library(ggplot2)
+# Scatter plot with smoothing
+ggplot(Fatalities, aes(x = year, y = fatal)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "red") +
+  labs(title = "ggplot2: Fatalities vs. Year with trend line",
+              x = "Year",
+              y = "Fatalities"
+       )
+## `geom_smooth()` using formula = 'y ~ x'
+<img width="725" height="479" alt="image" src="https://github.com/user-attachments/assets/da5d4eca-8072-426e-b009-938e79d4e4a1" />
+# Faceted histogram
+ggplot(Fatalities, aes(fatal)) +
+  geom_histogram(binwidth = 100, fill = "yellow", color = "red") +
+  facet_wrap(~ year) +
+  labs(title = "ggplot2: Fatalities distribution by Year",
+       x = "Fatalities",
+       y = "Count"
+  )
+<img width="733" height="483" alt="image" src="https://github.com/user-attachments/assets/302c7a9f-9233-440a-8170-d45adc1f8466" />
+How does the syntax and workflow differ between base, lattice, and ggplot2?
+Base graphics, lattice, and ggplot2 each have their own way of creating charts. Base graphics creates charts directly with functions like plot() and lets you add more elements later. Lattice uses a formula style, such as y ~ x, where most chart options are set in a single function call. ggplot2 builds charts in layers, starting with ggplot() and adding components with the + operator, which allows for greater flexibility and customization.
+
+Which system gave you the most control or produced the most “publication‑quality” output with minimal code?
+The faceted histogram in ggplot2 gave me the most control and produced the most publication-quality output with minimal code. Using facet_wrap(), I displayed the distribution of fatalities for each year in separate panels, which made comparisons easier. The layered syntax of ggplot2 also made it easy to customize the plot while keeping the code concise and organized.
+Any challenges or surprises you encountered when switching between systems.
+
+I encountered no major difficulties or surprises when switching between the systems. The same variables, Fatalities and Year, were displayed on the x-axis and y-axis in each system, which made the visualizations easy to interpret. This consistency meant I did not need to relearn how to read the data or change my analytical approach when moving from one system to another.
