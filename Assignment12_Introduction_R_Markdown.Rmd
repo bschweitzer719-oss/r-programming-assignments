@@ -79,5 +79,7 @@ Fortunately, from my experience, using R Markdown makes writing reports much eas
 Here is the link to the dataset:
 https://1drv.ms/f/c/519baaea610e4177/IgBDU3yPg7HPT4kNA6NgaWQfAfSaVxRavzPX_MC_k-Pg4sQ?e=McIhwV
 
+https://discoverantilleancuisine.wordpress.com/2026/11/12/assignment-12-introduction-to-r-markdown/
+
 
 
